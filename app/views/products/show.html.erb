@@ -12,34 +12,16 @@
 
   <h3>Reviews for <%= @product.name %></h3>
 
-  <% @product.reviews.each do |review| %>
-    <div class="review">
-      <p>
-          <%= review.comment %>
-            <%= link_to "modify", "#{product_path}/reviews/#{review.id}" %>
-          <br>
-          <% if review.user != nil %>
-            <em> By <%= review.user.email %></em>
-            <em>Added on:</em> <%= review.created_at %>
-          <% end %>
-      </p>
-    </div>
-  <% end %>
+  <div id="review=list">
+    <%= render partial: "products/reviews" %>
+  </div>
 
   <h4>New Review</h4>
 
-  <%= form_for([@product, @review], :remote => true) do |f| %>
-    <% if @review.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-        <ul>
-        <% @review.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <%= form_for([@product, @review]) do |f| %>
+    <div id="review-form-errors">
+      <%= render :partial => "/products/review_form_errors" %>
+    </div>
     <div class="field">
       <%= f.label :comment %><br />
       <%= f.text_area :comment %>

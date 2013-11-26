@@ -1,0 +1,13 @@
+<% @product.reviews.each do |review| %>
+  <div class="review">
+    <p>
+        <%= review.comment %>
+          <%= link_to "modify", "#{product_path}/reviews/#{review.id}" %>
+        <br>
+        <% if review.user != nil %>
+          <em> By <%= review.user.email %></em>
+          <em>Added on:</em> <%= review.created_at %>
+        <% end %>
+    </p>
+  </div>
+<% end %>
