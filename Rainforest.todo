@@ -1,0 +1,19 @@
+https://github.com/bitmakerlabs/rainforest_rails_4/wiki/Tutorial
+
+Todo:
+make modify buttons under products/show smaller
+fold modify and edit views together 
+
+
+Done:
+Make MVP for products: index, show, new,edit (.html.erb)
+Test
+
+Product show.erb displays price description 
+
+Product index.erb to display product :name :price, link_to product_path
+
+Added Review individual view/edit/destroy
+
+
+Bootstrap CSS the appl. ala Hartl Tutorial
