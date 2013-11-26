@@ -18,11 +18,16 @@ class ReviewsController < ApplicationController
       )
 
     #@review.user_id = current_user.id
-
-    if @review.save
-      redirect_to product_path(@product), notice: 'Review created successfully'
-    else
-      render :action => :show
+  respond_to do |format|
+      if @review.save
+        format.html { redirect_to product_path(@product.id), notice: 'Review added' }
+        format.js {} # This will look for /views/reviews/create.js.erb
+        #redirect_to product_path(@product), notice: 'Review created successfully'
+      else
+        #render :action => :show
+        format.html { render "products/show", notice: 'There was an error.'}
+        format.js {} # This will look for /views/reviews/create.js.erb
+      end
     end
   end
 
